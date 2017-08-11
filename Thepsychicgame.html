@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>The Psychic Game</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<script type="text/javascript"></script>
+</head>
+
+<body> 
+		<h1><bold> The Psychic Game</bold></h1>
+		<p><h4>Guess what letter I'm thinking of</h4></p>
+		<p><h4 id="wins">Wins: 0</h4></p>
+		<p><h4 id="losses">Losses: 0</h4></p>
+		<p><h4 id="guessesleft">Guesses Left: 12</h4></p>
+ 		<p><h4 id="guesses">Your guesses so far: </h4></p>
+</body>
+
+	<script>
+	    var youWin = 0;
+	    var youLose = 0;
+	    var Guessesleft= 12;
+	    var GuessesSoFar= [];
+	    var computerletters = ['a','b','c','d','e','f','g','h','i','j','k','l',
+	    'm','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+
+		document.onkeypress = function(event) {
+			var yourGuess= event.key;
+			GuessesSoFar.push(yourGuess);
+		    var computerChoice = computerletters[Math.floor(Math.random() * computerletters.length)];
+
+		   if (yourGuess === computerChoice) {
+		   		youWin++;
+		   		guessesLeft= 12;
+		   }
+
+		   else {
+
+		   	Guessesleft --;
+		   }
+
+		   if (Guessesleft === 0 ){
+		   	youLose ++;
+		   	Guessesleft= 12;
+		   }
+
+		   var html = "Your guesses so far: " +  GuessesSoFar.join(', ');
+		   document.querySelector("#wins").innerHTML = "Wins: " + youWin;
+		   document.querySelector("#losses").innerHTML = "Losses: " + youLose;
+		   document.querySelector("#guessesleft").innerHTML = "Guesses Left: " + Guessesleft;
+		   document.querySelector("#guesses").innerHTML = html;
+		}
+	</script>
+</html>
